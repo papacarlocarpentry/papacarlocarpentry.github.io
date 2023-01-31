@@ -1,0 +1,28 @@
+a:link {
+    color: brown;
+}
+
+a:visited {
+    color: grey;
+}
+
+.padding {
+    margin: 1em;
+}
+
+h2,h3{
+    padding-top: 2em;
+    font-size: large;
+}
+
+h3 > a {
+    margin-left: 1em;
+}
+
+h1{
+    font-size: x-large;
+}
+
+img.banner{
+    width: 100vw;
+}

@@ -8,11 +8,13 @@ a:visited {
 
 .padding {
     margin: 1em;
+    max-width: fit-content;
+    width: 60vw;
 }
 
 h2,h3{
-    padding-top: 2em;
-    font-size: large;
+    padding-top: 0.5em;
+    font-size: x-large;
 }
 
 h3 > a {
@@ -20,7 +22,7 @@ h3 > a {
 }
 
 h1{
-    font-size: x-large;
+    font-size: xx-large;
 }
 
 img.banner{

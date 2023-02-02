@@ -8,9 +8,18 @@ a:visited {
 
 .padding {
     margin: 1em;
-    max-width: fit-content;
-    width: 60vw;
+    width: 100%;
+    /* max-width: fit-content; */
 }
+
+.centering-parent{
+    display: flex;
+    justify-content: center;
+}
+.centering{
+    width: min(600px, 66vw);
+}
+
 
 h2,h3{
     padding-top: 0.5em;

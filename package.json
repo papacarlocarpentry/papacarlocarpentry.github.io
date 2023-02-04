@@ -1,0 +1,20 @@
+{
+  "name": "papacarlocarpentry",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "sbt test",
+    "copy": "sbt fullLinkJS"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/papacarlocarpentry/papacarlocarpentry.github.io.git"
+  },
+  "author": "Kirill <kine> Nevzorov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/papacarlocarpentry/papacarlocarpentry.github.io/issues"
+  },
+  "homepage": "https://github.com/papacarlocarpentry/papacarlocarpentry.github.io#readme"
+}

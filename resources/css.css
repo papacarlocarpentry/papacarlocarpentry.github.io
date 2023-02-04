@@ -18,7 +18,7 @@ a:hover {
     color: #fe0000 !important;
 }
 
-@media only screen and (min-wdith: 768px) {
+@media only screen and (max-width: 768px) {
     a:link {
         font-size: xx-small !important;
     }

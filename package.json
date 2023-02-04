@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "sbt test",
-    "copy": "sbt fullLinkJS"
+    "dist": "sbt dist"
   },
   "repository": {
     "type": "git",

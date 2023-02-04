@@ -14,7 +14,7 @@ val copyFiles = taskKey[Unit]("Copy js files into resources")
 
 copyFiles := {
   val baseDir = baseDirectory.value.toPath
-  val version = "3.2.2"
+  val version = scalaVersion.value
   val from = baseDir.resolve(
     s"target/scala-${version}/papa-carlo-scala-js-opt"
   )
@@ -31,9 +31,17 @@ copyFiles := {
     })
 }
 
+val dist = taskKey[Unit]("Distribute the compiled JS sources")
+
 lazy val build = (project in file("."))
   .enablePlugins(ScalaJSPlugin)
   .settings(
     scalaJSUseMainModuleInitializer := true,
-    libraryDependencies += "org.scala-js" %%% "scalajs-dom" % "2.1.0"
+    libraryDependencies += "org.scala-js" %%% "scalajs-dom" % "2.1.0",
+    Compile / dist := Def
+      .sequential(
+        Compile / fullLinkJS,
+        Compile / copyFiles
+      )
+      .value,
   )

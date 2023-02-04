@@ -86,4 +86,7 @@ body.bg{
     a {
         font-size: smaller;
     }
+    .collapsed > img {
+        width: 100% !important;
+    }
 }

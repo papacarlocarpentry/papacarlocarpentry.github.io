@@ -39,7 +39,12 @@ a:hover {
     }
 
     .contact-us > a {
-        font-size: 80%;
+        font-size: 100%;
+        display: block;
+    }
+
+    .card{
+        padding: 0;
     }
 }
 

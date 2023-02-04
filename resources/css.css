@@ -41,7 +41,7 @@ a:hover {
         margin: 2em;
     }
 
-    .contact-us {
+    .contact-us > a {
         font-size: 80%;
     }
 }

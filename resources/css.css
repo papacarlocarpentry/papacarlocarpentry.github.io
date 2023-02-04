@@ -81,3 +81,9 @@ body.bg{
   min-zoom: 0.6;
   max-zoom: 1.8;
 }
+
+@media screen and (min-wdith: 768px) {
+    a {
+        font-size: smaller;
+    }
+}

@@ -99,6 +99,7 @@ h5.bottom{
 .banner {
     background-color: #fe0000;
     width: 100%;
+    opacity: 0.85;
 }
 
 .banner>img {
@@ -133,10 +134,14 @@ h5.bottom{
 .mini a {
     display: block;
 }
-
+/* 
 body.bg {
     background-image: url("wood-texture.jpg");
     background-repeat: repeat;
+} */
+
+body.bg{
+    background-color: #eeeeee;
 }
 
 @viewport {

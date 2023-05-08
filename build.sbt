@@ -3,7 +3,6 @@ import java.net.URL
 import sbt._
 
 name := "Papa Carlo Scala-JS"
-
 ThisBuild / scalaVersion := "3.2.2"
 ThisBuild / organization := "dev.papacarlo"
 ThisBuild / organizationHomepage := Some(
@@ -13,12 +12,13 @@ ThisBuild / organizationHomepage := Some(
 val copyFiles = taskKey[Unit]("Copy js files into resources")
 
 copyFiles := {
+  import scala.sys.process._ 
   val baseDir = baseDirectory.value.toPath
   val version = scalaVersion.value
   val from = baseDir.resolve(
     s"target/scala-${version}/papa-carlo-scala-js-opt"
   )
-  val dest = baseDir.resolve("resources")
+  val dest = baseDir.resolve("dist")
 
   Files
     .walk(from)

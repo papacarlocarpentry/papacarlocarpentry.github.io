@@ -6,3 +6,4 @@ project/
 target/
 .scalafmt.conf
 *:Zone.Identifier
+node_modules/

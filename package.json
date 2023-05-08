@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/papacarlocarpentry/papacarlocarpentry.github.io/issues"
   },
-  "homepage": "https://github.com/papacarlocarpentry/papacarlocarpentry.github.io#readme"
+  "homepage": "https://github.com/papacarlocarpentry/papacarlocarpentry.github.io#readme",
+  "dependencies": {
+    "source-map-support": "^0.5.21"
+  }
 }

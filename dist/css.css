@@ -71,7 +71,6 @@ a:hover {
 
 /* mini buttons */
 a>img {
-    position: relative;
     bottom: -2px;
 }
 
@@ -121,6 +120,9 @@ h5.bottom {
 .banner>img {
     width: 100%;
     transition: all 1s;
+}
+.banner-container{
+    height: 300px;
 }
 
 .collapsed>img {

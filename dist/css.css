@@ -195,3 +195,8 @@ body.bg {
 .carousel-thumbnail.active {
     border-color: #f00;
 }
+
+.buttons-container {
+    display: flex;
+    justify-content: space-between;
+}

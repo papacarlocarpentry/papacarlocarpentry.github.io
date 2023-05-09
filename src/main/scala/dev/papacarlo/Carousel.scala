@@ -38,7 +38,4 @@ object Carousel {
     carouselElement.style.transform = s"translateX(${translateX}px)"
   }
 
-  def main(args: Array[String]): Unit = {
-    dom.document.addEventListener("DOMContentLoaded", (e: dom.Event) => init())
-  }
 }

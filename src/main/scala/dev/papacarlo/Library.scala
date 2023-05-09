@@ -1,34 +1,29 @@
-// package dev.papacarlo
-// import org.scalajs.dom
-// import org.scalajs.dom._
-// import org.scalajs.dom.document
-// import org.scalajs.dom.HTMLElement
-// import scala.collection.immutable.Range
+package dev.papacarlo
+import org.scalajs.dom
+import org.scalajs.dom._
+import org.scalajs.dom.document
+import org.scalajs.dom.HTMLElement
+import scala.collection.immutable.Range
+import scala.scalajs.js.annotation.JSExportTopLevel
 
-// object Library {
-//   @main def startup(): Unit = {
-//     registerScrollListener() { scroll =>
-//       if (pageScroll() > 0) collapseHeader()
-//       else expandHeader()
-//     }
-//     val files = carouselFiles("carousel", 1 to 6, "JPG")
-//     Carousel.initialiseImages(files)
-//     Carousel.createCarousel()
-//   }
+@JSExportTopLevel("Library")
+object Library {
+  def init(): Unit = {
+    registerScrollListener() { scroll =>
+      if (pageScroll() > 0) collapseHeader()
+      else expandHeader()
+    }
+  }
 
-//   def carouselFiles(prefix: String, range: Range, ext: String): List[String] = {
-//     range map (i => f"$prefix ($i).$ext")
-//   }.toList
+  def registerScrollListener()(func: Event => Unit): Unit =
+    document.addEventListener("scroll", func)
 
-//   def styleCarousel(elem: Element) = {}
+  def collapseHeader() = getHeader().classList.add("collapsed")
 
-//   def startCarousel(elem: Element) = {}
+  def expandHeader() = getHeader().classList.remove("collapsed")
 
-//   def registerScrollListener()(func: Event => Unit): Unit =
-//     document.addEventListener("scroll", func)
+  def getHeader() = document.querySelector(".banner")
 
-//   def collapseHeader() = getHeader().classList.add("collapsed")
-//   def expandHeader() = getHeader().classList.remove("collapsed")
-//   def getHeader() = document.querySelector(".banner")
-//   def pageScroll() = document.documentElement.scrollTop
-// }
+  def pageScroll() = document.documentElement.scrollTop
+
+}

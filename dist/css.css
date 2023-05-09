@@ -82,6 +82,7 @@ a:visited {
 .centering {
     width: min(600px, 66vw);
     overflow: hidden;
+    position: relative;
     margin-bottom: 1.5em;
 }
 

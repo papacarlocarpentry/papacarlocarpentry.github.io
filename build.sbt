@@ -10,6 +10,21 @@ ThisBuild / organizationHomepage := Some(
 )
 
 val copyFiles = taskKey[Unit]("Copy js files into resources")
+val dist = taskKey[Unit]("Distribute the compiled JS sources")
+
+lazy val build = (project in file("."))
+  .enablePlugins(ScalaJSPlugin)
+  .settings(
+    scalaJSUseMainModuleInitializer := true,
+    libraryDependencies += "org.scala-js" %%% "scalajs-dom" % "2.1.0",
+    Compile / dist := Def
+      .sequential(
+        Compile / fullLinkJS,
+        Compile / copyFiles
+      )
+      .value,
+  )
+
 
 copyFiles := {
   import scala.sys.process._ 
@@ -31,17 +46,5 @@ copyFiles := {
     })
 }
 
-val dist = taskKey[Unit]("Distribute the compiled JS sources")
 
-lazy val build = (project in file("."))
-  .enablePlugins(ScalaJSPlugin)
-  .settings(
-    scalaJSUseMainModuleInitializer := true,
-    libraryDependencies += "org.scala-js" %%% "scalajs-dom" % "2.1.0",
-    Compile / dist := Def
-      .sequential(
-        Compile / fullLinkJS,
-        Compile / copyFiles
-      )
-      .value,
-  )
+

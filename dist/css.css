@@ -38,12 +38,12 @@ a:hover {
         margin: 2em;
     }
 
-    .contact-us > a {
+    .contact-us>a {
         font-size: 100%;
         display: block;
     }
 
-    .card{
+    .card {
         padding: 0;
     }
 }
@@ -68,6 +68,7 @@ a:visited {
 
 .centering {
     width: min(600px, 66vw);
+    overflow: hidden;
 }
 
 h2,
@@ -91,7 +92,7 @@ h5 {
     padding-bottom: 1em;
 }
 
-h5.bottom{
+h5.bottom {
     padding-bottom: 0;
     padding-top: 1em;
 }
@@ -134,13 +135,14 @@ h5.bottom{
 .mini a {
     display: block;
 }
+
 /* 
 body.bg {
     background-image: url("wood-texture.jpg");
     background-repeat: repeat;
 } */
 
-body.bg{
+body.bg {
     background-color: #eeeeee;
 }
 
@@ -148,4 +150,26 @@ body.bg{
     zoom: 1.0;
     min-zoom: 0.6;
     max-zoom: 1.8;
+}
+
+.carousel-container {
+    width: 600%;
+    overflow: hidden;
+    display: block;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    display: flex;
+    margin: 0 auto;
+}
+
+.carousel-slide {
+    display: inline-block;
+    width: 100vw;
+    /* set the width of the slide to the viewport width */
+    transition: transform 0.3s ease-in-out;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: auto;
 }

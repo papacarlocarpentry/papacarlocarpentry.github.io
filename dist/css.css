@@ -46,7 +46,8 @@ ul>li>a {
 
 /* mini buttons */
 a>img {
-    bottom: -3px;
+    position: relative;
+    bottom: -4px;
 }
 
 a:visited {
@@ -134,29 +135,28 @@ a:visited {
 
 .banner,
 .menu-container>li {
-    transition: all 1s ease-in-out;
+    transition: all 1s cubic-bezier(1, 0, 0, 1);
     display: flex;
     left: 0;
     top: 0;
     z-index: 2;
-
+    background-color: #ff0000;
     margin: 0;
 }
 
 .banner {
+    display: flex;
     width: 100%;
     position: fixed;
-    background-color: #ff0000;
+    justify-content: center;
 }
 
 .banner,
 .spacer {
-    height: 300px;
+    height: 405px;
 }
 
 .banner>img {
-    width: 100%;
-    background-color: #ff0000;
     transition: all 1s;
 }
 
@@ -181,6 +181,10 @@ a:visited {
     overflow: hidden;
     position: relative;
     /* padding-bottom: 300px; */
+}
+
+.spacer,
+.card {
     margin-bottom: 1.5em;
 }
 
@@ -212,7 +216,7 @@ h5.bottom {
 
 
 
-.card  {
+.card {
     border-radius: 1em;
     background-color: #fefefe;
     padding: 2.5em;
@@ -283,7 +287,7 @@ body.bg {
     max-height: 80vh;
 }
 
- 
+
 .hidden {
     opacity: 0;
 }

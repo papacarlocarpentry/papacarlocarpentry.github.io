@@ -1,28 +1,18 @@
-package dev.papacarlo
+package dev.papacarlo.modules.spa
 
-import dev.papacarlo.SPA
-import dev.papacarlo.SPA.*
+import dev.papacarlo.modules.SPA
 import org.scalajs.dom.HTMLElement
 import org.scalajs.dom.fetch
 import org.scalajs.dom.console
 import scalajs.js.Thenable.Implicits.thenable2future
 import scala.concurrent.Future
-import Tag.Callback
 import org.scalajs.dom.Node
 import scalajs.js.JSON
 import scala.concurrent.Await
 import scala.concurrent.duration.Duration
 import concurrent.ExecutionContext.Implicits.global
+import SPA.*
 
-object Tag {
-  type Callback = Function[Node, Unit]
-}
-case class FileContents(
-    tag: String,
-    title: String,
-    classes: String,
-    innerHTML: String
-)
 abstract class Tag(
     classes: Seq[String] = Seq(),
     content: Option[String] = None,
@@ -86,62 +76,4 @@ abstract class Tag(
 
     } yield Future(anchor.appendChild(finalise(element)))
   }
-}
-
-class Section(
-    title: Option[String] = None,
-    file: Option[String] = None,
-    classes: Seq[String] = Seq(),
-    children: Tag*
-) extends Tag(
-      classes = classes,
-      tag = ("section"),
-      file = file,
-      children =
-        (title.map(t => Title(t)).map(t => t +: children).getOrElse(children))
-    )
-
-class SubSection(
-    tag: String = "div",
-    subTitle: Option[String] = None,
-    classes: Seq[String] = Seq(),
-    children: Tag*
-) extends Tag(
-      tag = tag,
-      file = None,
-      classes = classes,
-      children = (subTitle
-        .map(t => Title(tag = "h2", title = (subTitle), classes = Seq()))
-        .map(t => t +: children)
-        .getOrElse(children))
-    ) {
-
-  def this(tag: String, classes: String) =
-    this(tag = (tag), classes = Seq(classes))
-}
-
-class Title(
-    tag: String = "h3",
-    title: Option[String],
-    classes: Seq[String] = Seq()
-) extends Tag(
-      tag = tag,
-      content = title,
-      classes = classes
-    ) {
-  def this(title: String) = this(title = Some(title))
-}
-
-class Div(
-    content: Option[String] = None,
-    classes: Seq[String] = Seq(),
-    children: Tag*
-) extends Tag(
-      tag = ("div"),
-      content = content,
-      classes = classes,
-      children = children
-    ) {
-  def this(classes: String, children: Tag*) =
-    this(classes = Seq(classes), children = children: _*)
 }

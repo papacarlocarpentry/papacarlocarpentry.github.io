@@ -1,4 +1,4 @@
-package dev.papacarlo
+package dev.papacarlo.modules
 
 import org.scalajs.dom._
 import org.scalajs.dom.html._
@@ -10,34 +10,21 @@ import org.scalajs.dom.html.Image
 import org.scalajs.dom.HTMLElement
 import scala.concurrent.Future
 import scala.Option
+import dev.papacarlo.modules.spa.*
 
-object SPA {
+object SPA extends dev.papacarlo.SiteModule {
 
-  // val menuSections = Seq(
-  //   Home,
-  //   Section(
-  //     file = "dist/home.json",
-  //     title= "Test",
-  //   ),
-  //   Section(
-  //     title = "What we do",
-  //     SubSection(
-  //       tag = "div",
-  //       className = "carousel-source",
-  //       (e) => {
-  //         val container =
-  //           SubSection(tag = "div", className = "carousel-container")
-  //         val con = parse(e)(container).head
-  //         for (i <- Carousel.images) {
-  //           attach(con)(Section.carouselImage(i))
-  //         }
-  //       }
-  //     )
-  //   ),
+  def init = {
+    val anchor = SPA get "#root"
 
-  // )
+    val allSections = Seq(banner, spacer) ++ menuSections
+    for (section <- allSections) {
+      section attach anchor
+    }
+  }
 
   val spacer = Div(classes = Seq("spacer"))
+  val banner = Banner()
 
   val menuSections = Seq(
     HomeSection(),
@@ -71,23 +58,6 @@ object SPA {
     )
   )
 
-  class Card(
-      title: Option[String] = None,
-      file: Option[String] = None,
-      classes: Option[String] = None,
-      children: Tag*
-  ) extends Section(
-        None,
-        None,
-        classes = Seq("centering-parent"),
-        children = Section(
-          title,
-          file,
-          classes = Seq("card"),
-          children = children: _*
-        )
-      )
-
   class CenteringParent(
       title: Option[String] = None,
       file: Option[String] = None,
@@ -104,23 +74,6 @@ object SPA {
       node
     }
   }
-
-  class HomeSection(file: Option[String] = None, children: Tag*)
-      extends Card(
-        file = file,
-        title = Some("Home"),
-        children = children: _*
-      )
-
-  def init = {
-    val anchor = SPA get "#root"
-
-    val allSections = spacer +: menuSections
-    for (section <- allSections) {
-      section attach anchor
-    }
-  }
-
   def get(str: String): HTMLElement = {
     document.querySelector(str).asInstanceOf[HTMLElement]
   }
@@ -149,6 +102,6 @@ object SPA {
   }
 
   def setInnerHTML(element: Element)(innerHTML: String) =
-    element.innerHTML = element.innerHTML+innerHTML
+    element.innerHTML = element.innerHTML + innerHTML
 
 }

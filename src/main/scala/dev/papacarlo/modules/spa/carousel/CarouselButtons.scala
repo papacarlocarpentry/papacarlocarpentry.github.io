@@ -1,45 +1,13 @@
-package dev.papacarlo
+package dev.papacarlo.modules.spa.carousel
 
-import cats.effect.IO
-import dev.papacarlo.Carousel.currentIndex
-import dev.papacarlo.Carousel.numImages
 import org.scalajs.dom
 import org.scalajs.dom._
 import org.scalajs.dom.html.Image
-
 import scala.scalajs.js.annotation._
 import scala.util.control.NonLocalReturns.*
-
 import dom.document
-
-class Carousel()
-    extends Div(
-      classes = "centering",
-      CarouselContainer(Carousel.images),
-      CarouselButtons()
-    ) {
-  override def finalise(node: HTMLElement): HTMLElement = {
-    node.id = "carousel-source"
-    val carousel = node.children.apply(1)
-    for (child <- carousel.children) {
-      child.classList.add("hidden")
-    }
-    carousel.children.item(currentIndex).classList.remove("hidden")
-    node
-  }
-}
-
-class CarouselButton(id: String, child: Tag, fn: Function[dom.MouseEvent, Unit])
-    extends Div(
-      classes = Seq(),
-      children = child
-    ) {
-  override def finalise(node: HTMLElement): HTMLElement = {
-    node.addEventListener("click", fn)
-    node.id = id
-    node
-  }
-}
+import dev.papacarlo.modules.spa.{Tag, SubSection, Div}
+import dev.papacarlo.modules.spa.Carousel.*
 
 class CarouselButtons()
     extends Div(
@@ -81,30 +49,3 @@ class CarouselButtons()
         }
       )
     ) {}
-
-class CarouselImage(image: String) extends Tag(tag = "img") {
-  override def finalise(node: HTMLElement): HTMLElement = {
-    node.asInstanceOf[Image].src = image
-    node
-  }
-}
-
-class CarouselImageContainer(image: String)
-    extends Div(
-      classes = "carousel-slide",
-      children = CarouselImage(image)
-    )
-
-class CarouselContainer(images: Seq[String])
-    extends Div(
-      classes = "carousel-container",
-      children = (images map (CarouselImageContainer(_))): _*
-    )
-
-object Carousel {
-  val imageRange                = 1 to 6
-  def imageName(i: Int): String = f"/dist/carousel/carousel ($i).JPG"
-  val images                    = imageRange map imageName
-  var currentIndex              = 0
-  lazy val numImages            = images.size
-}

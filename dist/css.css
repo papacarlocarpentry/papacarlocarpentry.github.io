@@ -1,12 +1,27 @@
 /* general */
-a:link {
-    color: #fe0000;
-    text-decoration: none;
+body {
+    padding: 0;
+    margin: 0;
+    background-color: #333;
+}
+
+li,
+ul,
+ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* menus */
+.menu-container li {
+    text-transform: uppercase;
 }
 
 .contact-us,
+.menu-container li,
 .links {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: serif;
     font-size: 100%;
 }
 
@@ -15,21 +30,31 @@ a:link {
     margin-bottom: 0.5em;
 }
 
+a:link {
+    color: #454544;
+    text-decoration: none;
+}
+
 a:hover {
-    color: #fe0000 !important;
+    color: #3e0000 !important;
 }
 
-.centering-parent {
-    display: flex;
-    justify-content: center;
+ul>li>a {
+    padding-top: 0.85em;
+    color: #eeeeee !important;
 }
 
-.spacer {
-    height: 2em;
+/* mini buttons */
+a>img {
+    bottom: -3px;
+}
+
+a:visited {
+    color: #454544;
 }
 
 /* mobile only */
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 800px) {
     .carousel-container {
         width: 100%;
     }
@@ -67,23 +92,96 @@ a:hover {
     .card {
         padding: 0;
     }
-}
 
-/* mini buttons */
-a>img {
-    bottom: -2px;
-}
+    .menu-container {
+        display: block;
+        flex-direction: column;
+        flex-wrap: wrap;
+        /* display: flex; */
+    }
 
-a:visited {
-    color: #454545;
+    .banner>img {
+        height: auto;
+        width: 100%;
+    }
+
+    .banner {
+        flex-direction: column;
+    }
+
+    .centering {
+        width: auto !important;
+    }
 }
 
 /* layout and padding */
-.centering {
-    width: min(600px, 66vw);
+
+.menu-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-left: 5em;
+    padding-right: 5em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+/* banner */
+.banner.collapsed {
+    opacity: 0;
+    transform: translateY(-150%);
+}
+
+.banner,
+.menu-container>li {
+    transition: all 1s ease-in-out;
+    display: flex;
+    left: 0;
+    top: 0;
+    z-index: 2;
+
+    margin: 0;
+}
+
+.banner {
+    width: 100%;
+    position: fixed;
+    background-color: #ff0000;
+}
+
+.banner,
+.spacer {
+    height: 300px;
+}
+
+.banner>img {
+    width: 100%;
+    background-color: #ff0000;
+    transition: all 1s;
+}
+
+.centering-parent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.centering-parent:first {
+    height: auto;
+}
+
+.centering .centering-parent {
+    height: auto;
+}
+
+.card {
+    width: min(800px, 66vw);
+    height: auto;
     overflow: hidden;
     position: relative;
-    /* margin-bottom: 1.5em; */
+    /* padding-bottom: 300px; */
+    margin-bottom: 1.5em;
 }
 
 h2,
@@ -112,25 +210,7 @@ h5.bottom {
     padding-top: 1em;
 }
 
-/* banner */
-.banner {
-    background-color: #fe0000;
-    width: 100%;
-}
 
-.banner>img {
-    width: 100%;
-    transition: all 1s;
-}
-
-.banner-container {
-    height: 300px;
-}
-
-.collapsed>img {
-    width: min(100%, 600px) !important;
-    opacity: 0;
-}
 
 .card {
     border-radius: 1em;
@@ -162,7 +242,8 @@ body.bg {
 } */
 
 body.bg {
-    background-color: #eeeeee;
+    /* background-color: #eeeeee; */
+    background-color: black;
 }
 
 @viewport {
@@ -171,26 +252,37 @@ body.bg {
     max-zoom: 1.8;
 }
 
+.carousel-source {
+    overflow: hidden;
+}
+
 .carousel-container {
     width: 600%;
-    overflow: hidden;
-    display: block;
     flex-direction: row;
     flex-wrap: nowrap;
     display: flex;
     margin: 0 auto;
+    transition: all 0.3s ease-in-out;
 }
 
 .carousel-slide {
     display: inline-block;
     width: 100vw;
+    
     /* set the width of the slide to the viewport width */
-    transition: transform 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    z-index: 1;
 }
 
 .carousel-slide img {
-    width: 100%;
+    width: auto;
     height: auto;
+    max-height: 85vh;
+}
+
+ 
+.hidden {
+    opacity: 0;
 }
 
 .carousel-thumbnail {
@@ -215,14 +307,18 @@ body.bg {
     top: 0;
     bottom: 0;
     padding: 10px;
-    width: 10%;
-    color: white;
+    width: 0.75em;
+    color: grey;
     display: flex;
+    font-size: x-large;
     justify-content: center;
     align-items: center;
     font-size: xx-large;
+    z-index: 3;
 }
-.buttons-container div:hover {
+
+.buttons-container div:hover,
+.menu-container div:hover {
     background-color: rgba(99, 99, 99, 0.3);
     cursor: pointer;
 }

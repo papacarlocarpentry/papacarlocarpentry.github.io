@@ -266,9 +266,10 @@ body.bg {
 }
 
 .carousel-slide {
-    display: inline-block;
+    /* display: inline-block; */
     width: 100vw;
-    
+    display: flex;
+    flex-direction: column;
     /* set the width of the slide to the viewport width */
     transition: all 0.3s ease-in-out;
     z-index: 1;
@@ -276,8 +277,10 @@ body.bg {
 
 .carousel-slide img {
     width: auto;
+    display: block;
+    margin: auto;
     height: auto;
-    max-height: 85vh;
+    max-height: 80vh;
 }
 
  

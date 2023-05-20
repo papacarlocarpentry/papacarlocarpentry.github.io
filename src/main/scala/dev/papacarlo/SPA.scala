@@ -34,36 +34,38 @@ object SPA {
   //       }
   //     )
   //   ),
-  //   Section(title = "Past projects"),
-  //   Section(title = "Book a visit"),
-  //   Section(title = "Shop"),
-  //   Section(title = "Contact us"),
-  //   Section(title = "Testimonials")
+
   // )
 
-  val spacer = Div(classes = Some("spacer"))
+  val spacer = Div(classes = Seq("spacer"))
 
   val menuSections = Seq(
+    HomeSection(),
     Card(
-      title = Some("Book a visit"),
-      children = Div(content = Some("Under construction"))
-      // file = Some("/dist/book-a-visit.html")
+      title = Some("What we do"),
+      classes = Some("bolder"),
+      file = Some("/dist/what-we-do.html")
+    ),
+    Card(
+      title = Some("Testimonials"),
+      file = Some("/dist/testimonials.html")
+    ),
+    Card(
+      title = Some("Contact Us"),
+      file = Some("/dist/contact.html")
     ),
     Card(
       title = Some("Shop"),
       children = Div(content = Some("Under construction"))
     ),
     Card(
-      title = Some("What we do"),
-      file = Some("/dist/what-we-do.html")
+      title = Some("Book a visit"),
+      children = Div(content = Some("Under construction"))
+      // file = Some("/dist/book-a-visit.html")
     ),
     Card(
-      title = Some("Welcome to Papa Carlo Carpentry"),
-      file = Some("/dist/home.html")
-    ),
-    Card(
+      title = Some("Past Projects"),
       children = Section(
-        title = Some("Past Projects"),
         children = Carousel()
       )
     )
@@ -72,15 +74,16 @@ object SPA {
   class Card(
       title: Option[String] = None,
       file: Option[String] = None,
+      classes: Option[String] = None,
       children: Tag*
   ) extends Section(
         None,
-        file,
-        classes = Some("centering-parent"),
+        None,
+        classes = Seq("centering-parent"),
         children = Section(
           title,
           file,
-          classes = Some("card"),
+          classes = Seq("card"),
           children = children: _*
         )
       )
@@ -92,7 +95,7 @@ object SPA {
   ) extends Section(
         title,
         None,
-        classes = Some("centering-parent"),
+        classes = Seq("centering-parent"),
         children = children: _*
       ) {
     override def finalise(node: HTMLElement): HTMLElement = {
@@ -101,6 +104,13 @@ object SPA {
       node
     }
   }
+
+  class HomeSection(file: Option[String] = None, children: Tag*)
+      extends Card(
+        file = file,
+        title = Some("Home"),
+        children = children: _*
+      )
 
   def init = {
     val anchor = SPA get "#root"
@@ -139,6 +149,6 @@ object SPA {
   }
 
   def setInnerHTML(element: Element)(innerHTML: String) =
-    element.innerHTML = innerHTML
+    element.innerHTML = element.innerHTML+innerHTML
 
 }

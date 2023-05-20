@@ -24,10 +24,10 @@ case class FileContents(
     innerHTML: String
 )
 abstract class Tag(
-    classes: Option[String] = None,
+    classes: Seq[String] = Seq(),
     content: Option[String] = None,
-    tag: String = ("div"),
     file: Option[String] = None,
+    tag: String = ("div"),
     children: Seq[Tag] = Seq()
 ) {
 
@@ -88,18 +88,10 @@ abstract class Tag(
   }
 }
 
-class HomeSection(file: Option[String] = None, children: Tag*)
-    extends Tag(
-      tag = ("section"),
-      file = None,
-      classes = Some("centering-parent"),
-      children = (Title(title = "Home") +: children)
-    )
-
 class Section(
     title: Option[String] = None,
     file: Option[String] = None,
-    classes: Option[String] = None,
+    classes: Seq[String] = Seq(),
     children: Tag*
 ) extends Tag(
       classes = classes,
@@ -112,26 +104,26 @@ class Section(
 class SubSection(
     tag: String = "div",
     subTitle: Option[String] = None,
-    classes: Option[String] = None,
+    classes: Seq[String] = Seq(),
     children: Tag*
 ) extends Tag(
       tag = tag,
       file = None,
       classes = classes,
       children = (subTitle
-        .map(t => Title(tag = "h2", title = (subTitle), classes = None))
+        .map(t => Title(tag = "h2", title = (subTitle), classes = Seq()))
         .map(t => t +: children)
         .getOrElse(children))
     ) {
 
   def this(tag: String, classes: String) =
-    this(tag = (tag), classes = Some(classes))
+    this(tag = (tag), classes = Seq(classes))
 }
 
 class Title(
     tag: String = "h3",
     title: Option[String],
-    classes: Option[String] = None
+    classes: Seq[String] = Seq()
 ) extends Tag(
       tag = tag,
       content = title,
@@ -142,7 +134,7 @@ class Title(
 
 class Div(
     content: Option[String] = None,
-    classes: Option[String] = None,
+    classes: Seq[String] = Seq(),
     children: Tag*
 ) extends Tag(
       tag = ("div"),
@@ -151,5 +143,5 @@ class Div(
       children = children
     ) {
   def this(classes: String, children: Tag*) =
-    this(classes = Some(classes), children = children: _*)
+    this(classes = Seq(classes), children = children: _*)
 }

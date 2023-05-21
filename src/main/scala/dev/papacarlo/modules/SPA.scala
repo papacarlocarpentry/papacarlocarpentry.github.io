@@ -27,7 +27,9 @@ object SPA extends dev.papacarlo.SiteModule {
   val banner = Banner()
 
   val menuSections = Seq(
-    HomeSection(),
+    Card(
+      title = Some("Home")
+    ),
     Card(
       title = Some("What we do"),
       classes = Some("bolder"),

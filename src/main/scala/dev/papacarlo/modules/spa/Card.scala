@@ -12,18 +12,17 @@ import scala.concurrent.Future
 import scala.Option
 
 class Card(
-      title: Option[String] = None,
-      file: Option[String] = None,
-      classes: Option[String] = None,
-      children: Tag*
-  ) extends Section(
-        None,
-        None,
-        classes = Seq("centering-parent"),
-        children = Section(
-          title,
-          file,
-          classes = Seq("card"),
-          children = children: _*
-        )
+    title: Option[String] = None,
+    file: Option[String] = None,
+    classes: Option[String] = None,
+    children: Tag*
+) extends Section(
+      id = title.map(_.trim.replace(" ", "-").toLowerCase()),
+      classes = Seq("centering-parent"),
+      children = Section(
+        title,
+        file,
+        classes = Seq("card"),
+        children = children: _*
       )
+    )

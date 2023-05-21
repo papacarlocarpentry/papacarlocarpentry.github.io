@@ -23,7 +23,6 @@ object OnScroll extends dev.papacarlo.SiteModule {
       val scrollTop = pageScroll()
       if (scrollTop != lastScrollTop) {
         lastScrollTop = scrollTop
-        // if (scrollTop < height) animateScroll()
         if (scrollTop > 0) collapseHeader()
         else expandHeader()
       }

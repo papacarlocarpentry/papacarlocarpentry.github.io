@@ -15,6 +15,7 @@ import concurrent.ExecutionContext.Implicits.global
 class Section(
     title: Option[String] = None,
     file: Option[String] = None,
+    id: Option[String] = None,
     classes: Seq[String] = Seq(),
     children: Tag*
 ) extends Tag(
@@ -23,4 +24,9 @@ class Section(
       file = file,
       children =
         (title.map(t => Title(t)).map(t => t +: children).getOrElse(children))
-    )
+    ) {
+  override def finalise(node: HTMLElement): HTMLElement = {
+    for (ifId <- id) node.id = ifId
+    node
+  }
+}

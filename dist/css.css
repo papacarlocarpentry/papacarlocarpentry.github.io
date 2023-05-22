@@ -81,9 +81,9 @@ a:visited {
         flex-direction: column;
     }
 
-    .mini>div>a {
+    /* .mini>div>a {
         margin: 2em;
-    }
+    } */
 
     .contact-us>a {
         font-size: 100%;
@@ -112,6 +112,14 @@ a:visited {
 
     .centering {
         width: auto !important;
+    }
+
+    .card {
+        width: 100% !important;
+    }
+
+    .carousel-slide img {
+        max-width: 100% !important;
     }
 }
 
@@ -148,9 +156,19 @@ a:visited {
     display: flex;
     width: 100%;
     position: sticky;
+    top: 0;
     justify-content: center;
     margin-bottom: 1.5em;
+}
 
+.banner>img {
+    object-fit: contain;
+    width: 100%;
+}
+
+.spacer,
+.card {
+    margin-bottom: 1.5em;
 }
 
 
@@ -183,10 +201,6 @@ a:visited {
     /* padding-bottom: 300px; */
 }
 
-.spacer,
-.card {
-    margin-bottom: 1.5em;
-}
 
 h2,
 h3 {
@@ -285,6 +299,7 @@ body.bg {
     margin: auto;
     height: auto;
     max-height: 80vh;
+    max-width: 50%;
 }
 
 

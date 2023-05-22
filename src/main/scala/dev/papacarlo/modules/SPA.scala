@@ -18,14 +18,12 @@ object SPA extends dev.papacarlo.SiteModule {
     val anchor = SPA get "#root"
 
     val allSections = Seq(banner) ++ menuSections
-
-
     for (section <- allSections) {
       section attach anchor
     }
   }
 
-  val spacer = Div(classes = Seq("spacer"))
+  // val spacer = Div(classes = Seq("spacer"))
   val banner = Banner()
 
   val menuSections = Seq(

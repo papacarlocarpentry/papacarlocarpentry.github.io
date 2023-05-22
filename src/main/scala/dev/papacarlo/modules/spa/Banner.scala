@@ -11,9 +11,15 @@ class Image(src:String, alt:String) extends SubSection(tag="img"){
     }
 }
 class Banner()
-    extends Div(
-      classes = "banner",
+    extends SubSection(
+      tag = "header",
+      classes = Seq("banner"),
       children = Image(
         "/dist/banner.png", "Papa Carlo Carpentry logo"
       )
-    ) {}
+    ) {
+      override def finalise(node: HTMLElement): HTMLElement = {
+        node.setAttribute("role", "banner")
+        node
+      }
+    }

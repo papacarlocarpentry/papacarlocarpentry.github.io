@@ -17,7 +17,9 @@ object SPA extends dev.papacarlo.SiteModule {
   def init = {
     val anchor = SPA get "#root"
 
-    val allSections = Seq(banner, spacer) ++ menuSections
+    val allSections = Seq(banner) ++ menuSections
+
+
     for (section <- allSections) {
       section attach anchor
     }
@@ -28,12 +30,12 @@ object SPA extends dev.papacarlo.SiteModule {
 
   val menuSections = Seq(
     Card(
-      title = Some("Home")
+      title = Some("Home"),
+      file = Some("/dist/what-we-do.html")
     ),
     Card(
       title = Some("What we do"),
       classes = Some("bolder"),
-      file = Some("/dist/what-we-do.html")
     ),
     Card(
       title = Some("Testimonials"),

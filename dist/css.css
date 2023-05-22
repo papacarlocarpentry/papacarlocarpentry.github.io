@@ -32,7 +32,7 @@ ol {
 
 a:link {
     color: #454544;
-    text-decoration: none;
+    text-decoration: underline;
 }
 
 a:hover {
@@ -135,7 +135,7 @@ a:visited {
 
 .banner,
 .menu-container>li {
-    transition: all 1s cubic-bezier(1, 0, 0, 1);
+    transition: all 1s ease-in-out;
     display: flex;
     left: 0;
     top: 0;
@@ -147,17 +147,17 @@ a:visited {
 .banner {
     display: flex;
     width: 100%;
-    position: fixed;
+    position: sticky;
     justify-content: center;
+    margin-bottom: 1.5em;
+
 }
 
-.banner,
-.spacer {
-    height: 405px;
-}
+
 
 .banner>img {
     transition: all 1s;
+    max-width: 100%;
 }
 
 .centering-parent {

@@ -24,4 +24,7 @@ class Div(
     ) {
   def this(classes: String, children: Tag*) =
     this(classes = Seq(classes), children = children: _*)
+
+  def this() = 
+    this(classes= Seq())
 }

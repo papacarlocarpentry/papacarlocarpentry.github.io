@@ -3,6 +3,7 @@ body {
     padding: 0;
     margin: 0;
     background-color: #333;
+    /* background-image: url("/dist/wood-texture.jpg"); */
 }
 
 li,
@@ -200,14 +201,35 @@ a:visited {
     overflow: hidden;
     position: relative;
     transition: box-shadow 0.5s ease-in-out;
+
 }
 
-.card:hover{
+.expander {
+    display: grid;
+    grid-template-rows: auto 0fr;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+.expander-content {
+    transition: visibility 0.3s ease-in-out;
+    visibility: hidden;
+}
+
+.expander.expanded {
+    grid-template-rows: auto 1fr;
+}
+
+.expander.expanded .expander-content {
+    visibility: visible;
+}
+
+.card:hover {
     box-shadow: 0 0 30px white;
     cursor: pointer;
 }
 
-.card:hover .buttons-container>div:hover{
+.card:hover .buttons-container>div:hover {
     box-shadow: 0 0 30px #333;
     color: green;
 }
@@ -313,9 +335,9 @@ body.bg {
     max-width: 50%;
 }
 
-.card:hover .buttons-container > * {
-  box-shadow: 0 0 30px white;
-  color: white;
+.card:hover .buttons-container>* {
+    box-shadow: 0 0 30px white;
+    color: white;
 }
 
 .hidden {
@@ -353,7 +375,7 @@ body.bg {
     z-index: 3;
 }
 
-.buttons-container:hover > div{
+.buttons-container:hover>div {
     box-shadow: #333333;
 }
 

@@ -41,29 +41,51 @@ object SPA extends dev.papacarlo.SiteModule {
       title = Some("Home"),
       file = Some("/dist/what-we-do.html")
     ),
-    Card(
+    CollapsibleCard(
       title = Some("What we do"),
-      classes = Some("bolder")
+      children = (Div(
+        content = Some("Under construction"),
+        classes = Seq("expander"),
+        children = Div()
+      ))
     ),
-    Card(
+   CollapsibleCard(
       title = Some("Testimonials"),
-      file = Some("/dist/testimonials.html")
+      file = Some("/dist/testimonials.html"),
+      children = (Div(
+        content = Some("Under construction"),
+        classes = Seq("expander"),
+        children = Div()
+      ))
     ),
     Card(
       title = Some("Contact Us"),
       file = Some("/dist/contact.html")
     ),
-    Card(
+    CollapsibleCard(
       title = Some("Shop"),
-      children = Div(content = Some("Under construction"))
+      children = (Div(
+        content = Some("Under construction"),
+        classes = Seq("expander"),
+        children= Div(
+
+        )
+      ))
     ),
-    Card(
+    CollapsibleCard(
       title = Some("Book a visit"),
-      children = Div(content = Some("Under construction"))
+      children = (Div(
+        content = Some("Under construction"),
+        classes = Seq("expander"),
+        children = Div(
+         
+          
+        )
+      ))
       // file = Some("/dist/book-a-visit.html")
     ),
     Card(
-      title = Some("Past Projects"),
+      title = Some("Gallery"),
       children = Section(
         children = Carousel()
       )

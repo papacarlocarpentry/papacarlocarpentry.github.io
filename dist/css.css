@@ -36,7 +36,7 @@ a:link {
 }
 
 a:hover {
-    color: #3e0000 !important;
+    color: #750000 !important;
 }
 
 ul>li>a {
@@ -51,7 +51,7 @@ a>img {
 }
 
 a:visited {
-    color: #454544;
+    color: #954544;
 }
 
 /* mobile only */
@@ -158,6 +158,7 @@ a:visited {
     position: sticky;
     top: 0;
     justify-content: center;
+    z-index: 4;
     margin-bottom: 1.5em;
 }
 
@@ -198,7 +199,17 @@ a:visited {
     height: auto;
     overflow: hidden;
     position: relative;
-    /* padding-bottom: 300px; */
+    transition: box-shadow 0.5s ease-in-out;
+}
+
+.card:hover{
+    box-shadow: 0 0 30px white;
+    cursor: pointer;
+}
+
+.card:hover .buttons-container>div:hover{
+    box-shadow: 0 0 30px #333;
+    color: green;
 }
 
 
@@ -302,6 +313,10 @@ body.bg {
     max-width: 50%;
 }
 
+.card:hover .buttons-container > * {
+  box-shadow: 0 0 30px white;
+  color: white;
+}
 
 .hidden {
     opacity: 0;
@@ -330,16 +345,18 @@ body.bg {
     bottom: 0;
     padding: 10px;
     width: 0.75em;
-    color: grey;
+    color: #fff;
     display: flex;
-    font-size: x-large;
     justify-content: center;
     align-items: center;
-    font-size: xx-large;
+    transition: all 0.3s ease-in-out;
     z-index: 3;
 }
 
-.buttons-container div:hover,
+.buttons-container:hover > div{
+    box-shadow: #333333;
+}
+
 .menu-container div:hover {
     background-color: rgba(99, 99, 99, 0.3);
     cursor: pointer;
@@ -347,8 +364,10 @@ body.bg {
 
 #carousel-prev {
     left: 0;
+    background-color: #333333;
 }
 
 #carousel-next {
     right: 0;
+    background-color: #333333;
 }

@@ -11,6 +11,7 @@ import org.scalajs.dom.HTMLElement
 import scala.concurrent.Future
 import scala.Option
 import dev.papacarlo.modules.spa.*
+import concurrent.ExecutionContext.Implicits.global
 
 object SPA extends dev.papacarlo.SiteModule {
 
@@ -18,12 +19,21 @@ object SPA extends dev.papacarlo.SiteModule {
     val anchor = SPA get "#root"
 
     val allSections = Seq(banner) ++ menuSections
-    for (section <- allSections) {
-      section attach anchor
-    }
+
+    // for (
+    //   section <- allSections map (_.compile)
+    // ) for {
+    //   resolve <- section
+    // } {
+    //   window.setTimeout(() => {anchor.appendChild(resolve)}, 1)
+    // }
+
+    val seq: Future[Seq[HTMLElement]] =
+      Future.sequence(allSections map (_.compile))
+    for (resolve <- seq) for (el <- resolve) anchor.appendChild(el)
+
   }
 
-  // val spacer = Div(classes = Seq("spacer"))
   val banner = Banner()
 
   val menuSections = Seq(
@@ -33,7 +43,7 @@ object SPA extends dev.papacarlo.SiteModule {
     ),
     Card(
       title = Some("What we do"),
-      classes = Some("bolder"),
+      classes = Some("bolder")
     ),
     Card(
       title = Some("Testimonials"),

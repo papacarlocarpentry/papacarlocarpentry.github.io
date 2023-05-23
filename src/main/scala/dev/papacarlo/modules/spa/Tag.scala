@@ -21,8 +21,8 @@ abstract class Tag(
     children: Seq[Tag] = Seq()
 ) {
 
-  def classList                   = classes map (_.split(" ").toIndexedSeq)
-  def finalise(node: HTMLElement) = identity(node)
+  def classList = classes map (_.split(" ").toIndexedSeq)
+  def finalise(node: HTMLElement): HTMLElement = identity(node)
   def fileContents: Option[Future[String]] = {
     for (fileString <- file) yield {
       for {
@@ -32,17 +32,12 @@ abstract class Tag(
     }
   }
 
-  def toElement: Option[HTMLElement] = {
-    Option(mkElement(tag))
+  def toElement: HTMLElement = {
+    (mkElement(tag))
   }
 
-  def attach(anchor: Node): Future[Unit] = {
-    val maybeElement = toElement
-    if (maybeElement.isEmpty) {
-      console.debug("element was empty")
-      return Future(())
-    }
-    val element = maybeElement.get
+  def compile : Future[HTMLElement] = {
+    val element = toElement
     val applyClass = (el: HTMLElement) =>
       for (ifClasses <- classList) {
         ifClasses foreach { c =>
@@ -61,10 +56,13 @@ abstract class Tag(
         }
       }
     val applyChildren = (el: HTMLElement) =>
-      Future
-        .sequence {
-          for (ifChild <- children) yield ifChild.attach(el)
+      Future.sequence {
+        for (ifChild <- children) yield {
+          for(compiled <- ifChild.compile) yield { 
+            el.appendChild(compiled)
+          }
         }
+      }
 
     for {
       _ <- Future(applyClass(element))
@@ -74,6 +72,6 @@ abstract class Tag(
         case None        => Future.successful(())
         case Some(value) => value
 
-    } yield Future(anchor.appendChild(finalise(element)))
+    } yield finalise(element)
   }
 }

@@ -12,13 +12,14 @@ import cats.effect.IO
 object OnScroll extends dev.papacarlo.SiteModule {
 
   def init: Unit = {
-    dom.window.setTimeout(
-      () => {
-        header = document.querySelector(".banner")
-        height = header.getBoundingClientRect().height
-      },
-      0
-    )
+    val root = document.querySelector("#root")
+
+    when(root) {
+      console.log("loaded")
+      header = document.querySelector(".banner")
+      height = header.getBoundingClientRect().height
+    }
+
     registerScrollListener() { scroll =>
       val scrollTop = pageScroll()
       if (scrollTop != lastScrollTop) {
@@ -29,6 +30,16 @@ object OnScroll extends dev.papacarlo.SiteModule {
     }
   }
 
+  def when(node: Node)(fn: => Unit) = {
+    val observer = new MutationObserver((e, _) => {
+      if (e.apply(0).addedNodes.length > 0) {
+        fn
+      }
+    })
+    observer.observe(node, new MutationObserverInit {
+      this.childList = true
+    })
+  }
   var lastScrollTop   = 0.0
   var header: Element = _
   var height: Double  = _

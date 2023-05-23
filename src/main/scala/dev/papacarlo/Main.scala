@@ -16,7 +16,7 @@ object Main {
     dom.document.addEventListener("DOMContentLoaded", (e: dom.Event) => init())
   }
 
-  def init() = {
+  def init () = {
     modules foreach (_.init)
   }
 }

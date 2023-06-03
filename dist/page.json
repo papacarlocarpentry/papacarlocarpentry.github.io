@@ -1,0 +1,77 @@
+[
+    {
+        "type": "card", 
+        "title": "Home",
+        "classes": [
+            "expanded"
+        ],
+        "file": "/dist/what-we-do.html"
+    },
+    {
+        "type": "card",
+        "title": "What we do",
+        "children": [
+            {
+                "type": "div",
+                "content": "Under construction",
+                "classes": [
+                    "expander"
+                ]
+            }
+        ]
+    },
+    {
+        "type": "card",
+        "title": "Testimonials",
+        "file": "/dist/testimonials.html",
+        "children": [
+            {
+                "type": "div",
+                "content": "Under construction",
+                "classes": [
+                    "expander"
+                ]
+            }
+        ]
+    },
+    {
+        "type": "card",
+        "title": "Contact Us",
+        "file": "/dist/contact.html"
+    },
+    {
+        "type": "card",
+        "title": "Shop",
+        "children": [
+            {
+                "type": "div",
+                "content": "Under construction",
+                "classes": [
+                    "expander"
+                ]
+            }
+        ]
+    },
+    {
+        "type": "card",
+        "title": "Book a visit",
+        "children": [
+            {
+                "type": "div",
+                "content": "Under construction",
+                "classes": [
+                    "expander"
+                ]
+            }
+        ]
+    },
+    {
+        "type": "fixedCard",
+        "title": "Gallery",
+        "children": {
+            "children": {
+                "type": "carousel"
+            }
+        }
+    }
+]

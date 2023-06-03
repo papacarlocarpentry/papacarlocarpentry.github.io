@@ -7,3 +7,4 @@ target/
 .scalafmt.conf
 *:Zone.Identifier
 node_modules/
+dist/main.js.map

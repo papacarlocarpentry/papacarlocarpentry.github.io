@@ -20,14 +20,6 @@ object SPA extends dev.papacarlo.SiteModule {
 
     val allSections = Seq(banner) ++ menuSections
 
-    // for (
-    //   section <- allSections map (_.compile)
-    // ) for {
-    //   resolve <- section
-    // } {
-    //   window.setTimeout(() => {anchor.appendChild(resolve)}, 1)
-    // }
-
     val seq: Future[Seq[HTMLElement]] =
       Future.sequence(allSections map (_.compile))
     for (resolve <- seq) for (el <- resolve) anchor.appendChild(el)
@@ -37,16 +29,16 @@ object SPA extends dev.papacarlo.SiteModule {
   val banner = Banner()
 
   val menuSections = Seq(
-    Card(
+    CollapsibleCard(
       title = Some("Home"),
+      classes = Seq("expanded"),
       file = Some("/dist/what-we-do.html")
     ),
     CollapsibleCard(
       title = Some("What we do"),
       children = (Div(
         content = Some("Under construction"),
-        classes = Seq("expander"),
-        children = Div()
+        classes = Seq("expander")
       ))
     ),
    CollapsibleCard(
@@ -54,11 +46,10 @@ object SPA extends dev.papacarlo.SiteModule {
       file = Some("/dist/testimonials.html"),
       children = (Div(
         content = Some("Under construction"),
-        classes = Seq("expander"),
-        children = Div()
+        classes = Seq("expander")
       ))
     ),
-    Card(
+    CollapsibleCard(
       title = Some("Contact Us"),
       file = Some("/dist/contact.html")
     ),
@@ -66,10 +57,7 @@ object SPA extends dev.papacarlo.SiteModule {
       title = Some("Shop"),
       children = (Div(
         content = Some("Under construction"),
-        classes = Seq("expander"),
-        children= Div(
-
-        )
+        classes = Seq("expander")
       ))
     ),
     CollapsibleCard(

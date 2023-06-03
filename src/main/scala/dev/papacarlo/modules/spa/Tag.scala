@@ -13,7 +13,7 @@ import scala.concurrent.duration.Duration
 import concurrent.ExecutionContext.Implicits.global
 import SPA.*
 
-abstract class Tag(
+class Tag(
     classes: Seq[String] = Seq(),
     content: Option[String] = None,
     file: Option[String] = None,
@@ -21,8 +21,14 @@ abstract class Tag(
     children: Seq[Tag] = Seq()
 ) {
 
-  def classList = classes map (_.split(" ").toIndexedSeq)
+  /**
+    * Override this to work on the rendered node
+    *
+    * @param node this element after dom creation
+    * @return this element after finalisation
+    */
   def finalise(node: HTMLElement): HTMLElement = identity(node)
+  def classList = classes map (_.split(" ").toIndexedSeq)
   def fileContents: Option[Future[String]] = {
     for (fileString <- file) yield {
       for {

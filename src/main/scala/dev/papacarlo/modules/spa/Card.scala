@@ -29,6 +29,7 @@ class Card(
 class CollapsibleCard(
     title: Option[String] = None,
     file: Option[String] = None,
+    classes: Seq[String] = Seq(),
     children: Tag*
 ) extends Section(
       id = title.map(_.trim.replace(" ", "-").toLowerCase()),
@@ -36,7 +37,7 @@ class CollapsibleCard(
       children = Section(
         title,
         file,
-        classes = Seq("card"),
+        classes = Seq("card expander") ++ classes,
         children = children: _*
       )
     ){

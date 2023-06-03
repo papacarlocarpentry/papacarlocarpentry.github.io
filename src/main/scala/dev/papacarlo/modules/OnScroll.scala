@@ -6,11 +6,10 @@ import org.scalajs.dom.HTMLElement
 import org.scalajs.dom.html.Canvas
 import scala.collection.immutable.Range
 import scala.scalajs.js.annotation.JSExportTopLevel
-import cats.effect.IO
 
 @JSExportTopLevel("OnScroll")
 object OnScroll extends dev.papacarlo.SiteModule {
-
+  var noUpdate = false
   def init: Unit = {
     val root = document.querySelector("#root")
 
@@ -22,10 +21,19 @@ object OnScroll extends dev.papacarlo.SiteModule {
 
     registerScrollListener() { scroll =>
       val scrollTop = pageScroll()
-      if (scrollTop != lastScrollTop) {
+      if (scrollTop > 0 && lastScrollTop == 0.0) {
+        collapseHeader()
+        noUpdate = true
+        window.setTimeout(() => { noUpdate = false }, 900)
         lastScrollTop = scrollTop
+      }
+      if (noUpdate) {
+        println("noupdating")
+      } else if (scrollTop != lastScrollTop) {
+        println("updating")
         if (scrollTop > 0) collapseHeader()
         else expandHeader()
+        lastScrollTop = scrollTop
       }
     }
   }
@@ -36,9 +44,12 @@ object OnScroll extends dev.papacarlo.SiteModule {
         fn
       }
     })
-    observer.observe(node, new MutationObserverInit {
-      this.childList = true
-    })
+    observer.observe(
+      node,
+      new MutationObserverInit {
+        this.childList = true
+      }
+    )
   }
   var lastScrollTop   = 0.0
   var header: Element = _
